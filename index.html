@@ -108,13 +108,36 @@ Te amo más de lo que las palabras pueden expresar eres el amor de mi vida y jam
 
 </div>
 
-<script>
-const inicio=new Date("2023-11-09");
-function actualizar(){
- const hoy=new Date();
- const dias=Math.floor((hoy-inicio)/(1000*60*60*24));
- document.getElementById("contador").innerHTML="❤️ Llevamos juntos "+dias+" días ❤️";
+const inicio = new Date("2023-11-09");
+
+function actualizar()
+{
+    const hoy = new Date();
+
+    const diferencia = hoy - inicio;
+    const totalDias = Math.floor(
+        diferencia / (1000 * 60 * 60 * 24)
+    );
+
+    let años = hoy.getFullYear() - inicio.getFullYear();
+    let meses = hoy.getMonth() - inicio.getMonth();
+
+    if (hoy.getDate() < inicio.getDate())
+    {
+        meses--;
+    }
+
+    if (meses < 0)
+    {
+        años--;
+        meses += 12;
+    }
+
+    document.getElementById("contador").innerHTML =
+    `❤️ Llevamos juntos ${totalDias} días ❤️<br><br>
+     ❤️ ${años} años y ${meses} meses ❤️`;
 }
+
 actualizar();
 
 function mostrarCarta(){
